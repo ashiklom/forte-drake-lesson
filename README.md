@@ -17,7 +17,11 @@ With RStudio open, go to "Tools -> Global Options -> Git/SVN", and make sure tha
 You will also need to have the `tidyverse` collection of R packages installed.
 You can install them by running `install.packages("tidyverse")` from the R console, or via the "Install" button in the RStudio package menu.
 
-# Setup
+In addition, you will need to create a (free) account on [GitHub](https://github.com).
+
+# Review: Data exploration with the `tidyverse`
+
+## Createing
 
 Open RStudio.
 
@@ -31,12 +35,10 @@ The repository URL is `https://github.com/FoRTExperiment/FoRTE-canopy`.
 Let's call the repository `forte-canopy-git`.
 (Also, pick a directory in which to store it).
 
-# Exploring the data
+## Review: Data exploration with the `tidyverse`
 
 Create a new R script called `analysis.R`.
-Since we'll be analyzing tabular data, let's make it easier with the `tidyverse`.
-
-Let's load the `tidyverse` package and read in the A band list data.
+In that script, let's load the `tidyverse` package and read in the A band list data.
 
 ```r
 library(tidyverse)
@@ -107,15 +109,16 @@ ggplot(a_bandlist) +
   geom_boxplot()
 ```
 
-# Version control with git: Part 1
+
+# Storing changes
+
+## Introduction
 
 Click the "git" tab in RStudio.
 There should be two files listed there:
 `analysis.R` and `forte-canopy-git.Rproj`.
 
-## Git theory -- briefly
-
-A bit of Git vocabulary and related theory:
+Before we dive into actually _doing_ things, it's worth introducing a bit of Git vocabulary:
 
 - A **repository** refers to a collection of files and their revision history in a directory that are tracked by Git. Here, our repository is the `forte-canopy-git` directory.
 - A **commit** is a snapshot of the repository (and all the files therein) at a particular point. A commit is usually accompanied by a helpful message describing what happened most recently.
@@ -125,6 +128,7 @@ In the "Git" tab, click the "History" button to open a popup that shows a histor
 Click through some of these commits to get a sense of the history of how this repository evolved over time.
 
 (**NOTE:** Git shows commits as "diffs" -- differences between files relative to the last commit. However, remember that under the hood, each commit stores the _full state of the repository_, not just the changes. Commits are rendered as "diffs" relative to the previous commit because when we look at the git commit history, or log, we are usually interested in the changes.)
+
 
 ## Changes in the working directory
 
@@ -152,6 +156,7 @@ Note that discarding changes is effectively **irreversible**.
 However, here the change is minor and undesirable, so let's discard it.
 Notice that once we do, the file should disappear from the "git" menu, and your name has changed back to "jeff" in the source code window.
 
+
 ## Your first commit: Adding the `analysis.R` script
 
 That was a change we didn't want to record.
@@ -178,6 +183,7 @@ You should also see that a little info bubble at the top of the window says "You
 Ignore this for now -- we will talk about remotes (e.g. GitHub) later.
 If you click on "History", you should see your commit was added at the top (end) of the commit history.
 
+
 ## Your second commit: Replacing the `Rproj` file
 
 To solidify your understanding of creating git commits, let's try another one.
@@ -203,6 +209,7 @@ Under the hood, this is because git tracks the overall _content_ of a repository
 For more on this behavior (and some potential workaround), see [this StackOverflow answer](https://stackoverflow.com/a/15031787/2477097), but for our purposes, this is acceptable behavior, so we will move on from it.
 To finish the commit, write an informative commit message in the box (perhaps, "Replace old Rproj file") and click the "Commit" button.
 Confirm that the commit was stored by looking at the "History".
+
 
 ## Your third and fourth commit: Cleaning up the `analysis.R` file
 
@@ -250,9 +257,29 @@ The resulting better-organized commits make for a more useful history that is ea
 (_end soapbox_)
 
 
-## Ignoring files
+# Branching
 
-(To go after )
+## Motivation
+
+## Vocabulary
+
+
+# Remotes
+
+## Introduction
+
+Let's add another definition.
+
+## Creating a repository on GitHub
+
+Create
+
+# Contributing to Git(Hub) projects
+
+
+# Other topics
+
+## Ignoring files
 
 Often, we will have files in our repository that we don't want Git to track for various reasons.
 Some examples include:
