@@ -3,6 +3,20 @@ title: Introduction to Git using analysis of FoRTE canopy data
 author: Alexey Shiklomanov
 ---
 
+# Prerequisites
+
+You will need the following system software installed:
+
+- R ([download from CRAN](https://cloud.r-project.org/))
+- RStudio desktop ([download from RStudio.com](https://www.rstudio.com/products/rstudio/download/#download))
+- Git ([download from git-scm.com](https://git-scm.com/download), or [download the GitHub Desktop client](https://desktop.github.com/))
+
+You will also need to make sure that RStudio recognizes your Git executable.
+With RStudio open, go to "Tools -> Global Options -> Git/SVN", and make sure that "Enable version control interface for RStudio projects" is checked and that the "Git executable" is set.
+
+You will also need to have the `tidyverse` collection of R packages installed.
+You can install them by running `install.packages("tidyverse")` from the R console, or via the "Install" button in the RStudio package menu.
+
 # Setup
 
 Open RStudio.
