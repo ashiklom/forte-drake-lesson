@@ -15,7 +15,23 @@ Software installed:
 Make sure RStudio knows about Git:
 "Tools -> Global options -> Git/SVN"
 
-# Create the project
+# Setup
+
+## git configuration
+
+Main way to interact with git is through the command line.
+To configure, in RStudio, go to "Terminal" tab (next to "Console") and type the following:
+
+```
+git config --global user.name Your Name
+git config --global user.email your_email@email.com
+```
+
+Under the hood, this modifies the global git configuration, which generally lives in `~/.gitconfig`.
+
+All of the tutorial here will use the RStudio Git GUI, which has more limited functionality than the git CLI but is much easier to use.
+
+## Create the project
 
 Create a new RStudio project
 New project -> Check "use git"
@@ -34,7 +50,10 @@ download.file("https://raw.githubusercontent.com/FoRTExperiment/FoRTE-canopy/mas
               "data/A_bandlist.csv")
 ```
 
-# First commit
+
+# Committing changes
+
+## First commit
 
 Click the "git" tab in RStudio.
 Should see 3 files: `.gitignore`, `data/`, and `forte-canopy-git.Rproj`.
@@ -56,7 +75,10 @@ First, line up the people you want in this shot -- select the files.
 
 Then, click "Commit", add a message, and click "Commit".
 
-# Commit 2
+View the history.
+Note that the 
+
+## Commit 2
 
 Create a new script (`analysis.R`).
 
@@ -71,7 +93,7 @@ glimpse(a_bandlist_raw)
 
 Now, commit it.
 
-# Commit 3
+## Commit 3
 
 Goal is to summarize.
 What's varying in the data?
@@ -92,7 +114,7 @@ Look at Git.
 These are modifications (hence "M").
 Let's commit them.
 
-# Commit 4
+## Commit 4
 
 A few problems:
 1. There's a problem in the `Species` column: `FAGR#` is probably supposed to be `FAGR`.
