@@ -221,7 +221,7 @@ You now have an empty repository with instructions for what to do next.
 ## Upload your code to GitHub
 
 Go back to RStudio.
-There is no way to register a remote via GUI, so have to do a bit more command line git.
+There is no convenient way to register a remote via GUI, so have to do a bit more command line git.
 
 ## A bit of Git CLI
 
@@ -290,8 +290,81 @@ git remote -v
 git remote --verbose
 ```
 
+## Pushing local changes to a remote
+
+The command to update a remote with your local changes is `push`, whose syntax is as follows:
+
+```
+git push <REMOTE> <BRANCH>
+```
+
+In this case, our remote is `origin`.
+We will cover branches in the next section -- for now, all you need to know is that the default branch is called `master`.
+Therefore, our command is:
+
+```
+git push origin master
+```
+
+You may be prompted for your GitHub username and password.
+If this is successful, refresh the GitHub page of your repository and you should see everything.
+
+
+## Pulling remote changes to your local repository
+
+If you are working off a single machine, by yourself, you probably won't have to do this.
+But, for completeness, let's step through it.
+
+First, let's make a change to the code in the GitHub browser.
+Specifically, let's use the browser to create a README.
+Click the "Add a README" button, then create a short README file, then enter a commit message and commit it.
+You should see the README appear, and be automatically rendered.
+
+Now, return to RStudio.
+Notice that nothing happened automatically.
+Recall -- _Git is not Dropbox_; no synchronization ever happens unless you specifically tell it to.
+
+The command to update your local repository from a remote is `pull`, and has similar syntax to `push`. 
+
+```
+git pull origin master
+```
+
+You should see a bunch of output describing what just happened, and you should see that the `README.md` file was added.
+
+
+## Automatically tracking remote changes
+
+We can save ourselves some typing, and enable some other useful features, by having our current branch (`master`) "track" a particular branch on the remote (again, don't worry about what branches are yet).
+To enable this, let's repeat the `push` command, but with the additional `-u` (or the full version, `--set-upstream`) flag.
+
+```
+git push -u origin master
+```
+
+You should see a message like:
+
+```
+Branch 'master' set up to track remote branch 'master' from 'origin'
+Everything up-to-date.
+```
+
+The first message means that your current work is now "tracking" what you have on GitHub.
+For one, this means that if you just do `git push` or `git pull` without arguments, git will automatically push/pull from `origin`.
+In addition, this means that you will get some useful information about the status of your local work relative to what's on GitHub.
+
+To demonstrate, let's add one more commit to our local work.
+
+Once you've done that, notice that the RStudio Git pane now shows the following message: "Your branch is ahead of 'origin/master' by 1 commit."
+In other words, your local work is one commit ahead of what is currently on GitHub.
+In addition, you can now use the "Pull" and "Push" buttons in the RStudio Git interface rather than relying on the command line.
+
+Since we need to update our remote (GitHub), hit "Push".
+You should see a popup showing the status of the operation.
+Go back to GitHub and refresh.
+You should now see that your latest commit has been added.
+
 # Branching
 
-## Motivation
 
 
