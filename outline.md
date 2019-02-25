@@ -364,7 +364,7 @@ You should see a popup showing the status of the operation.
 Go back to GitHub and refresh.
 You should now see that your latest commit has been added.
 
-# Branching
+# Tags, branches, and HEAD
 
 Now let's consider what that `master` word actually means.
 
@@ -372,5 +372,105 @@ In RStudio Git, open the "History" window and look at the list of commits.
 Notice that the latest commit has several colored labels on it, in addition to the message: `HEAD -> refs/heads/master` and `origin/master`.
 Notice also that in the far right, there is a column labeled "SHA" with a string of numbers and digits.
 
-Each git commit is uniquely identifiable by a "SHA-1 hash" -- a unique 38-character ID that is designed to have extremely low odds of duplication (1 in 2^80^, or roughly 1.2 x 10^24^).
+Each git commit is uniquely identifiable by a "SHA-1 hash" -- a 38-character string that is designed to have extremely low odds of duplication (1 in 2^80^, or roughly 1.2 x 10^24^).
+What you're seeing here are the first 8 characters of that hash, which are usually enough to identify a commit within a single repository.
+For instance, in the history menu, click on a commit and notice the "View file @ ..." link.
 
+However, that hash is not very informative, so git also gives the option of labeling commits to make them easier to refer to.
+Here, I go over 3 kinds of labels: tags, branches, and `HEAD`.
+Combined with the raw commit SHA hash, these constitute the 4 kinds of git **refspecs**, which are used by many git commands.
+
+
+## Tags
+
+**Tags** are simple labels that apply to exactly one commit.
+They are useful for marking more human-readable versions of programs, or more generally for other noteworthy parts of the history.
+There is no way to manipulate tags in RStudio, so we will use the git CLI command `git tag`.
+It has the following syntax:
+
+```
+git tag <TAG> <(REFERENCE)>
+```
+
+For example, to tag the last commit before the README as `pre-github`:
+
+```
+git tag pre-github <SHA>
+```
+
+Run that command, then refresh the "history" window and you should see it appear in yellow next to the commit in question.
+Now, if you wanted to also tag this as "pre-readme", it would be easier to do because you can replace any occurrence of that commit's `<SHA>` with `pre-github`.
+
+```
+git tag pre-readme pre-github
+```
+
+A commit can have as many tags as you want.
+
+**NOTE**: Tags are not pushed by default. To send tags to GitHub, you need to use the CLI command `git push --tags`.
+Try it out, and note that once you do it, you can jump to specific "tags" on GitHub.
+
+
+## Branches
+
+**Branches** are, essentially, "dynamic" tags, meaning that they advance as you add commits.
+They are best demonstrated by example.
+
+Suppose we wanted to do our analysis in base R instead of using the `tidyverse`.
+This is a significant change that will take several commits and non-trivial time investment.
+Moreover, it's also a bit of a side-project; we probably also want to keep around the current version of our analysis and be able to switch back to it quickly.
+This is a good candidate for branching.
+
+### Create a branch
+
+Click the "New branch" button (purple symbol) next to "master" in the RStudio git panel.
+Keep "origin" selected as a Remote, and "Sync branch with remote" checked.
+Note the output (and the commands used).
+
+If successful, you will see that "master" has changed to "base-r".
+Notice also that the Git History has changed a bit:
+There is now a new tag "origin/base-r", the "HEAD" has changed to "refs/heads/base-r", and there is also the standalone label "master".
+
+
+## Commit to the new branch
+
+Now that we are on a new own branch, we can experiment with switching to base R.
+In our first commit, let's change `readr`'s `read_csv` to base R's `read.csv`.
+Commit the change, then look at the history.
+
+Note that the green `HEAD` label has advanced by one commit, but `master`, `origin/master`, and `origin/base-r` are still glued to the previous commit.
+This is exactly the behavior we want, because it makes it easy to jump back and forth between (or **checkout**) different branches.
+
+To return to the previous version, checkout the `master` branch by clicking the "base-r" drop-down menu and selecting the "local" `master` branch.
+You should now be back to using `read_csv`.
+
+## Diverging histories
+
+What makes branches _really_ cool is the ability to work on multiple "branches" of history simultaneously, as we'll demonstrate here.
+On the `master` branch, change the plot color palette to `"Set2"` and commit it.
+Now, view the "History" (you may have to refresh it to see the changes).
+Notice that `HEAD` has now advanced one commit past `origin/master` and `origin/base-r`.
+
+Where is the `base-r` branch?
+By default, git only shows the history of the current branch and any branches that are its direct descendents.
+To view all branches, click the "master" button and change it to "all branches".
+That will show you aesthetically that your history has diverged after a common commit.
+
+Let's do one more change on `base-r` to practice:
+Checkout the branch (from the menu) and make another change.
+Refresh and examine the "History".
+Do you understand what happened?
+
+## The `HEAD`
+
+`HEAD` just refers to the tip of the current active branch.
+
+## Updating branches on the remote
+
+The remote's `master` and `base-r` branches are different from your current ones, which is why they have the additional `origin` label.
+Use `git push` to update them.
+Once you push `base-r`, you should see that `origin/base-r` has advanced to match up with `HEAD`.
+
+## Merging
+
+Use `git merge` to incorporate the changes of one branch into another.
