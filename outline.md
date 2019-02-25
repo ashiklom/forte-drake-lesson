@@ -158,5 +158,13 @@ ggplot(a_bandlist) +
   geom_boxplot()
 ```
 
+Commit these changes in several parts:
+First, fixes to the data.
+Second, the species summary.
+Third, the plot.
+While doing the plot, stage the change, then make several modifications (e.g. rotate X axis, fix X axis title), stage some and discard others.
 
-## First commit
+
+# Branching
+
+
