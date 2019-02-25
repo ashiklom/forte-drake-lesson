@@ -12,6 +12,8 @@ Software installed:
 - `tidyverse` R package
 - Git (from git-scm.com or GitHub Desktop)
 
+Create a (free) account on GitHub.
+
 Make sure RStudio knows about Git:
 "Tools -> Global options -> Git/SVN"
 
@@ -165,6 +167,48 @@ Third, the plot.
 While doing the plot, stage the change, then make several modifications (e.g. rotate X axis, fix X axis title), stage some and discard others.
 
 
+# Remotes
+
+A **remote** just another location where a repository is stored.
+It can be another folder on the same computer, or a folder on a different computer.
+GitHub, BitBucket, and GitLab (among others) are, at their core, just places where you can store a copy of your repository -- they just happen to provide some nice features for doing so (like browsing).
+
+## Quick tour of GitHub
+
+Start with Jeff's FoRTE-canopy repository, where this lesson's data comes from: https://github.com/FoRTExperiment/FoRTE-canopy
+
+- Browse the directory structure
+- Rendered `README.md` file
+- Commits -- commit history.
+    - Click on a commit to see the changes.
+    - What does "updating scripts" mean?
+- Look at specific code files (e.g. Google Drive test script)
+    - "Raw" -- see the raw file; this is good for downloading files. Note the URL (this is how we downloaded the data)
+    - "Blame" -- see which commits are responsible for which changes in the given file
+    - "History" -- see that specific file's commit history
+    
+Now, let's look at an example of a massive collaborative project: RStudio -- https://github.com/rstudio/rstudio
+
+- Look at commits (~25K!)
+  - Click to see different author contributions
+- Look at issues
+  - Anyone can open an issue. In active projects, issues are often resolved super fast.
+  - Issues can be bug reports, feature requests, or other questions -- often a great source of documentation; lots of workarounds. E.g. Issue #3843 (https://github.com/rstudio/rstudio/issues/3843)
+  - Note the search keywords `is:issue is:open`. Remove `is:open` to view all issues.
+- Look at pull requests
+  - **Pull request** is a proposed set of changes.
+  - GitHub facilitates discussion of changes, and line-by-line review of these changes.
+  - I can take this, modify it, and adapt for my own use. If I want changes to be added to the original project, I can open a pull request.
+  - Look at some examples of accepted ("merged") and rejected ("closed") PRs.
+- Look at the "blame" on one of the files -- every change is not only attributable to someone, but also has an explanation.
+
+
+## Create a GitHub repository
+
+
+
 # Branching
+
+## Motivation
 
 
