@@ -19,7 +19,7 @@ Make sure RStudio knows about Git:
 
 # Setup
 
-## git configuration
+## Git configuration
 
 Main way to interact with git is through the command line.
 To configure, in RStudio, go to "Terminal" tab (next to "Console") and type the following:
@@ -31,7 +31,7 @@ git config --global user.email your_email@email.com
 
 Under the hood, this modifies the global git configuration, which generally lives in `~/.gitconfig`.
 
-All of the tutorial here will use the RStudio Git GUI, which has more limited functionality than the git CLI but is much easier to use.
+Most of the tutorial here will use the RStudio Git GUI, which has more limited functionality than the git CLI but is much easier to use.
 
 ## Create the project
 
@@ -205,7 +205,90 @@ Now, let's look at an example of a massive collaborative project: RStudio -- htt
 
 ## Create a GitHub repository
 
+At top of screen, click "+" and "New repository".
 
+Give the repository a name, and optionally, a brief description.
+
+Let's keep the repository public.
+
+(If you're worried that someone will steal your code, try searching GitHub for "forte" -- almost 2000 repositories!)
+
+For now, _don't_ check "Initialize repository", and leave the other options as "None".
+
+You now have an empty repository with instructions for what to do next.
+
+
+## Upload your code to GitHub
+
+Go back to RStudio.
+There is no way to register a remote via GUI, so have to do a bit more command line git.
+
+## A bit of Git CLI
+
+Go to the "Terminal".
+
+The basic structure of git commands is as follows:
+
+```
+git <COMMAND> <OPTIONS>
+```
+
+To see a list of all `<COMMANDs>`, use command "help".
+
+```
+git help
+# or...
+git --help
+```
+
+To get help with a particular command, you can do:
+
+```
+git help <COMMAND>
+# ...or...
+git <COMMAND> --help
+
+# E.g. for git config:
+git help config
+git config --help
+```
+
+## Creating a remote
+
+Git commands related to remotes are under the `remote` command:
+
+```
+git remote --help
+```
+
+To create a new remote, use the `add` sub-command, which has the following syntax:
+
+```
+git remote add <NAME> <PATH>
+```
+
+Here, `<NAME>` can be anything.
+A convention is to call your "main" remote (e.g. your personal GitHub) `origin`, so let's do that.
+The `<PATH>` is the GitHub URL.
+(Note that GitHub repositories have a standard format: https://github.com/username/repository).
+
+```
+git remote add origin https://github.com/ashiklom/forte-canopy-git
+```
+
+To see the list of all remotes:
+
+```
+git remote
+```
+
+This isn't very helpful, so let's also add the URLs by appending the `-v` (for "verbose"):
+
+```
+git remote -v
+# ...or...
+git remote --verbose
+```
 
 # Branching
 
