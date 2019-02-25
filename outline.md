@@ -366,5 +366,11 @@ You should now see that your latest commit has been added.
 
 # Branching
 
+Now let's consider what that `master` word actually means.
 
+In RStudio Git, open the "History" window and look at the list of commits.
+Notice that the latest commit has several colored labels on it, in addition to the message: `HEAD -> refs/heads/master` and `origin/master`.
+Notice also that in the far right, there is a column labeled "SHA" with a string of numbers and digits.
+
+Each git commit is uniquely identifiable by a "SHA-1 hash" -- a unique 38-character ID that is designed to have extremely low odds of duplication (1 in 2^80^, or roughly 1.2 x 10^24^).
 
